@@ -1,5 +1,6 @@
 package com.chloe.spring02aopstu.calculator.impl;
 
+import com.chloe.spring02aopstu.anno.MyAnno;
 import com.chloe.spring02aopstu.calculator.Calculator;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CalculatorImpl implements Calculator {
+    @MyAnno
     @Override
     public int add(int a, int b) {
         return a+b;

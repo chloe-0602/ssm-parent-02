@@ -19,6 +19,11 @@ public class AopTest {
     @Autowired
     private Calculator calculator;
     @Test
+    public void test6(){
+        calculator.add(1,2);
+
+    }
+    @Test
     public void test5(){
         calculator.div(1,1);
     }
