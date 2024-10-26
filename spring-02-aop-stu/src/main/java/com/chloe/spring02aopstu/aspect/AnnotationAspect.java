@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  */
 @Component
-@Aspect
+//@Aspect
 public class AnnotationAspect {
     @Before("@annotation(com.chloe.spring02aopstu.anno.MyAnno)")
     public void before() {

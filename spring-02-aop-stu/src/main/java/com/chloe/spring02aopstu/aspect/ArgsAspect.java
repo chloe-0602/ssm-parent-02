@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  */
 @Component
-@Aspect
+//@Aspect
 public class ArgsAspect {
     @Before("args(java.lang.Integer, java.lang.Integer)")
     public void myBefore(){
