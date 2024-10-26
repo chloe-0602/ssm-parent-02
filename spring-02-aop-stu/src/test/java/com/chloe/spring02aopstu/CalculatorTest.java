@@ -5,6 +5,8 @@ import com.chloe.spring02aopstu.calculator.impl.CalculatorImpl;
 import com.chloe.spring02aopstu.proxy.DynamicProxy;
 import com.chloe.spring02aopstu.proxy.StaticProxyCalculator;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -19,7 +21,7 @@ import java.lang.reflect.Proxy;
  * @Create 2024/10/26 7:49
  * @Version 1.0
  */
-
+@SpringBootTest
 public class CalculatorTest {
 
     @Test
