@@ -1,7 +1,12 @@
 package com.chloe.spring02aopstu.aspect;
 
-import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 /**
  * ClassName: AuthAspect
@@ -14,6 +19,37 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
+@Order(7)
 public class AuthAspect {
+    @Before("com.chloe.spring02aopstu.aspect.PointCutBean.pointCut()")
+    public void beforeLog(JoinPoint joinPoint) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        String methodName = signature.getName();
+        Object[] args = joinPoint.getArgs();
+        System.out.println("[Auth Aspect] 开始..., 方法是："+ methodName+ "，参数是：" + Arrays.toString(args));
+    }
 
+    /**
+     * 参数的顺序不能反，否则会不对，可能不会报错
+     * @param joinPoint
+     * @param res
+     */
+    @AfterReturning(value = "com.chloe.spring02aopstu.aspect.PointCutBean.pointCut()", returning = "res")
+    public void afterLog(JoinPoint joinPoint,Object res) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        String methodName = signature.getName();
+        System.out.println("[Auth Aspect] 结束...，方法是 "+methodName+" 结果是： " + res);
+    }
+
+    @AfterThrowing(value = "com.chloe.spring02aopstu.aspect.PointCutBean.pointCut()", throwing = "e")
+    public void exceptionLog(Throwable e) {
+        System.out.println("[Auth Aspect] 异常...， 异常信息是： " + e.getMessage());
+    }
+
+    @After("com.chloe.spring02aopstu.aspect.PointCutBean.pointCut()")
+    public void endLog(JoinPoint joinPoint) {
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        String methodName = signature.getName();
+        System.out.println("[Auth Aspect] 结束..., 方法是： " + methodName);
+    }
 }

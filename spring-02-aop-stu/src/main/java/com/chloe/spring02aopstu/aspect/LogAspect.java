@@ -5,6 +5,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -20,11 +21,11 @@ import java.util.Arrays;
  */
 @Component
 @Aspect
+@Order(6)
 public class LogAspect {
-    @Pointcut("execution(* com..*.*(..))")
-    public void pointCut(){}
 
-    @Before("pointCut()")
+
+    @Before("com.chloe.spring02aopstu.aspect.PointCutBean.pointCut()")
     public void beforeLog(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         String methodName = signature.getName();
@@ -37,19 +38,19 @@ public class LogAspect {
      * @param joinPoint
      * @param res
      */
-    @AfterReturning(value = "pointCut()", returning = "res")
+    @AfterReturning(value = "com.chloe.spring02aopstu.aspect.PointCutBean.pointCut()", returning = "res")
     public void afterLog(JoinPoint joinPoint,Object res) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         String methodName = signature.getName();
         System.out.println("[日志 Aspect] 结束...，方法是 "+methodName+" 结果是： " + res);
     }
 
-    @AfterThrowing(value = "pointCut()", throwing = "e")
+    @AfterThrowing(value = "com.chloe.spring02aopstu.aspect.PointCutBean.pointCut()", throwing = "e")
     public void exceptionLog(Throwable e) {
         System.out.println("[日志 Aspect] 异常...， 异常信息是： " + e.getMessage());
     }
 
-    @After("pointCut()")
+    @After("com.chloe.spring02aopstu.aspect.PointCutBean.pointCut()")
     public void endLog(JoinPoint joinPoint) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         String methodName = signature.getName();
