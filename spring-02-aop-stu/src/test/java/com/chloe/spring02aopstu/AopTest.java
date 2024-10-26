@@ -20,6 +20,6 @@ public class AopTest {
     private Calculator calculator;
     @Test
     public void test5(){
-        calculator.div(1,0);
+        calculator.div(1,1);
     }
 }
