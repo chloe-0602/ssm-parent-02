@@ -25,6 +25,6 @@ public class AopTest {
     }
     @Test
     public void test5(){
-        calculator.div(1,1);
+        calculator.div(1,0);
     }
 }
